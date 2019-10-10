@@ -20,21 +20,21 @@ class tender(object):
         self.magnetBy = 1.126959
 
         # Bx magnet field T (tesla)
-        self.self.magnetBx = 0.0
+        self.magnetBx = 0.0
 
         # total length of ID (m)
-        self.totalLength = lambda0*N/100.
+        self.totalLength = self.lambda0*self.N/100.
 
         # deflection parameter Ky
-        self.Ky = 0.934 * lambda0 * magnetBy
+        self.Ky = 0.934 * self.lambda0 * self.magnetBy
 
         # deflection parameter Kx
-        self.Kx = 0.934 * lambda0 * magnetBx
+        self.Kx = 0.934 * self.lambda0 * self.magnetBx
 
         # gamma 1/mrad
-        self.gamma = 1957.*GeV/1000.
+        self.gamma = 1957.*self.GeV/1000.
 
         # electron volt
 
         #get 1st harmonic energy in eV
-        self.eV1 = 9.498*np.power(GeV,2)/(lambda0/100.*(1 + np.power(Kx,2)/2. + np.power(Ky,2)/2.))
+        self.eV1 = 9.498*np.power(self.GeV,2)/(self.lambda0/100.*(1 + np.power(self.Kx,2)/2. + np.power(self.Ky,2)/2.))

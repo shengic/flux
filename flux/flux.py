@@ -6,17 +6,20 @@ import matplotlib.pyplot as plot
 #from classes import SR as SR
 #from classes.tender import tender as undulator
 from classes import reflectivity as reflectivity
-from classes import photons as photons
+from classes.photons import Photons
 import periodictable as periodictable
-from classes import SRconstants
+# from classes import SRconstants as SR
+from classes.tender import tender as SR
 
 incidentAngle = np.array(1.25)
 material = "Au"
 density = periodictable.Au.density
 maxeV = 30000.
 
-flux = photons(SRconstants, maxeV)
-flux.setReflectivity(material, density, incidentAngle)
-photonFlux = flux.getPhotonFlux(0.,0.,)
 
-print("photon flux  " + photonFlux)
+# flux = Photons(None, maxeV)
+flux = Photons(SR(), maxeV)
+flux.setReflectivity(material, density, incidentAngle)
+photonFlux = flux.getPhotonFlux(0.,0.)
+
+print("photon flux  " + str(photonFlux))
