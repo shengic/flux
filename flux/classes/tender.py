@@ -17,7 +17,7 @@ class tender(object):
         self.N = 208
 
         # By magnet field T [tesla)
-        self.magnetBy = 1.126959
+        self.magnetBy = 1.23
 
         # Bx magnet field T (tesla)
         self.magnetBx = 0.0

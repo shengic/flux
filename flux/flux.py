@@ -21,4 +21,4 @@ photon = Photons(SR(), maxeV)
 photon.setReflectivity(material, density, incidentAngle)
 photonFlux = photon.getPhotonFlux(0.,0.)
 
-print("photon flux  " + str(photonFlux))
+print("photon flux  " + str(photonFlux) + "w/mrad^2")
