@@ -2,7 +2,6 @@ import math as math
 import numpy as np
 from numpy import linalg as lg
 from classes import reflectivity as reflectivity
-from classes import SRconstants as undulator
 from classes.tender import tender
 import scipy.constants as constants
 import scipy.special as special
@@ -30,8 +29,10 @@ class Photons(object):
         self.thetay = thetay
 
         self.photonFlux = np.power(constants.e*self.undulator.gamma*self.undulator.N,2)/constants.e* \
-            2.*math.pi/constants.Planck/(4.*constants.pi*constants.epsilon_0*constants.c)
-        self.photonFlux *= self.undulator.eV1*1000./self.undulator.N*np.sum(self.LfunList)
+            (2.*math.pi/constants.Planck)/(4.*math.pi*constants.epsilon_0*constants.c)
+        self.photonFlux *= constants.e*self.undulator.beamCurrent/1000.
+        self.photonFlux *= self.undulator.eV1/self.undulator.N*np.sum(self.LfunList)
+        print(self.undulator.eV1/self.undulator.N*np.sum(self.LfunList))
         return self.photonFlux
 
 
@@ -39,12 +40,12 @@ class Photons(object):
         self.LfunList = []
 # make sure each element is only odd number energy
         for n in np.arange(1, self.ntotal, 2):
-            self.LfunList.append(self.Fn(n)*n*self.refHash[n])
+            self.LfunList.append(self.Fn(n)*self.refHash[n])
         return self.LfunList
 
     def Fn(self,n):
         k = self.undulator.Ky
-        z = n*np.power(k,2)/(2.*(1.+ np.power(k,2)/2))
+        z = n*np.power(k,2)/(4.*(1.+ np.power(k,2)/2))
         fn = np.power(n*k,2)/np.power((1.+ np.power(k,2)/2.) ,2) * \
                    np.power(special.jv((n+1)/2,z)-special.jv((n-1)/2,z),2)
         return fn
