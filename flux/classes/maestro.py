@@ -2,11 +2,11 @@ import math as math
 import numpy as np
 from numpy import linalg as lg
 
-class tender(object):
+class maestro(object):
     def __init__(self):
 
         # incident angle (degreee)
-        self.incidentAngle = np.array(0.4584)
+        self.incidentAngle = np.array(2.25)
 
         #electron energy (GeV)
         self.GeV = 2.
@@ -15,14 +15,14 @@ class tender(object):
         self.beamCurrent = 500
 
         # period length lambda [cm]
-        self.lambda0 = 1.9
+        self.lambda0 = 7
 
         # number of period N
-        self.N = 208
+        self.N = 25
 
         # By magnet field T [tesla)
         #self.magnetBy = 1.12659
-        self.magnetBy = 1.23
+        self.magnetBy = 0.145347
 
         # Bx magnet field T (tesla)
         self.magnetBx = 0.0

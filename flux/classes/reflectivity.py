@@ -42,3 +42,9 @@ class reflectivity(object):
         self.reflectivity = xsf.mirror_reflectivity(compound = self.material, density = self.density ,\
             energy = self.keVList, roughness = self.roughness, angle = self.incidentAngle)
         return self.reflectivity[0]
+
+# return list of absorption for give list of photon energy
+    def getAbsorptionList(self, incidentAngle, evList):
+        reflectivity = self.getReflectivityList(iincidentAngle, evList)
+        self.absorption = 1.- reflectivity
+        return self.absorption
